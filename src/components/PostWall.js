@@ -1,16 +1,20 @@
 import { useState, useEffect, useContext } from 'react';
 import { auth, db } from '../App';
 import { collection, getDocs } from "firebase/firestore";
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-// Initialize the JS client
+import firebase from 'firebase/compat/app';
+import "firebase/firestore";
 
 const PostWall = () => {
-    // map all posts in supabas
-    //const postsRef = collection(db,"Posts");
+    const db = firebase.firestore();
+    const postsRef = db.collection("Posts");
     
     useEffect (() => {
-        
+        postsRef.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+            });
+        });
     });
     
     return (

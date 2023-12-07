@@ -1,5 +1,6 @@
 import './App.css';
 // Import the functions you need from the SDKs you need
+import firebase from 'firebase/compat/app';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
@@ -8,6 +9,7 @@ import { useState, useEffect, createContext, useContext } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import PostWall from './components/PostWall';
 import SignIn from'./components/SignIn';
+import "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDqlP72zNcUkYhYmXjyZMgKcJA3RSUlgtM",
@@ -20,7 +22,7 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
-export const db = getFirestore(app);
+export const db = firebase.firestore();
 
 // Initialize Firebase
 
